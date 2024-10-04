@@ -12,6 +12,21 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        "spinner-grow": {
+          "0%": {
+            transform: "scale(0)",
+            opacity: "0",
+          },
+          "50%": {
+            opacity: "1",
+          },
+          "100%": {
+            transform: "scale(1)",
+            opacity: "0",
+          },
+        },
+      },
     },
   },
   plugins: [],
