@@ -1,6 +1,6 @@
 import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
-import Link from "next/link";
+import Link from "../componets/Link";
 import React from "react";
 import IssueStatusBadge from "../componets/IssueStatusBadge";
 import delay from "delay";
