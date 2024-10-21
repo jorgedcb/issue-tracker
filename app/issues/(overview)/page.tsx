@@ -16,7 +16,7 @@ const IssuesPage = async () => {
               Status
             </Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell className="hidden md:table-cell">
-              Crated
+              Created
             </Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
