@@ -14,6 +14,12 @@ import {
   Text,
 } from "@radix-ui/themes";
 
+const getAvatarFallback = (user: any): string => {
+  if (user?.name) return user.name[0].toUpperCase();
+  if (user?.email) return user.email[0].toUpperCase();
+  return '?';
+};
+
 const NavBar = () => {
   const currentPath = usePathname();
   const { status, data: session } = useSession();
@@ -50,17 +56,19 @@ const NavBar = () => {
             {status === "authenticated" && (
               <DropdownMenu.Root>
                 <DropdownMenu.Trigger>
-                  <Avatar
-                    src={session.user!.image!}
-                    fallback="?"
-                    size="2"
-                    radius="full"
-                    className="cursor-pointer"
-                  />
+                  <button className="cursor-pointer focus:outline-none">
+                    <Avatar
+                      src={session.user?.image || undefined}
+                      fallback={getAvatarFallback(session.user)}
+                      size="2"
+                      radius="full"
+                      referrerPolicy="no-referrer"
+                    />
+                  </button>
                 </DropdownMenu.Trigger>
-                <DropdownMenu.Content>
+                <DropdownMenu.Content className="bg-white p-2 rounded shadow-lg mt-2">
                   <DropdownMenu.Label>
-                    <Text size="2">{session.user!.email}</Text>
+                    <Text size="2">{session.user?.email || 'User'}</Text>
                   </DropdownMenu.Label>
                   <DropdownMenu.Item>
                     <Link href="/api/auth/signout">Logout</Link>
