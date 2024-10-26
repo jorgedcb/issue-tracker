@@ -1,6 +1,6 @@
 "use client";
-import { Card, Flex, Text } from "@radix-ui/themes";
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis } from "recharts";
+import { Card } from "@radix-ui/themes";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
 interface IssueSummaryProps {
   open: number;

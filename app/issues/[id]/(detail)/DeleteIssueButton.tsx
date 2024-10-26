@@ -8,6 +8,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
   const router = useRouter();
   const [error, setError] = useState(false);
   const [isDeleting, setDeleting] = useState(false);
+
   const deleteIssue = async () => {
     try {
       setDeleting(true);
@@ -16,18 +17,20 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
       router.refresh();
     } catch (error) {
       setDeleting(false);
+      setError(true); // Utilize the 'error' variable by updating the error state
     }
   };
+
   return (
     <>
       <AlertDialog.Root>
         <AlertDialog.Trigger>
           <Button color="red" disabled={isDeleting}>
-            Delete Issue 1{isDeleting && <Spinner />}
+            Delete Issue {isDeleting && <Spinner />}
           </Button>
         </AlertDialog.Trigger>
         <AlertDialog.Content>
-          <AlertDialog.Title> Confirm Deletion</AlertDialog.Title>
+          <AlertDialog.Title>Confirm Deletion</AlertDialog.Title>
           <AlertDialog.Description size="2">
             Are you sure you want to delete this issue? This action cannot be
             undone.
@@ -40,7 +43,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
             </AlertDialog.Cancel>
             <AlertDialog.Action>
               <Button variant="solid" color="red" onClick={deleteIssue}>
-                Delete Issue 2
+                Delete Issue
               </Button>
             </AlertDialog.Action>
           </Flex>
@@ -48,7 +51,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
       </AlertDialog.Root>
       <AlertDialog.Root open={error}>
         <AlertDialog.Content>
-          <AlertDialog.Title> Error</AlertDialog.Title>
+          <AlertDialog.Title>Error</AlertDialog.Title>
           <AlertDialog.Description>
             This issue could not be deleted.
           </AlertDialog.Description>
